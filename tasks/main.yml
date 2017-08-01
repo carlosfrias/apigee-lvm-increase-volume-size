@@ -1,0 +1,24 @@
+---
+# tasks file for apigee-lvm-increase-volume-size
+
+- name: Install gdisk
+  yum:
+    name: gdisk
+    state: present
+
+- name: Create partition from available space
+  shell: "/usr/sbin/sgdisk --new {{ partnum }}:$(/usr/sbin/sgdisk -F):$(/usr/sbin/sgdisk -E) --mbrtogpt --typecode {{ partnum }}:{{ typecode }} --print {{ device_name }}"
+
+- name: Re-read partition table
+  shell: /usr/sbin/partprobe
+
+- name: Extend local volume from added physical volume
+  lvol:
+    vg: "{{ volume_name }}"
+    lv: "{{ logical_volume_name }}"
+    pvs: "{{ device_name }}{{ partnum }}"
+    shrink: no
+    size: "+{{ percent_volume_extend }}%FREE"
+
+
+
