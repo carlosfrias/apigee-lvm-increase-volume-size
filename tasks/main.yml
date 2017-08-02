@@ -12,6 +12,12 @@
 - name: Re-read partition table
   shell: /usr/sbin/partprobe
 
+- name: Create physical volume and extend volume group from partition
+  lvg:
+    pvs: "{{ device_path }}"
+    state: present
+    vg: "{{ volume_name }}"
+
 - name: Extend local volume from added physical volume
   lvol:
     vg: "{{ volume_name }}"
