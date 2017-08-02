@@ -20,5 +20,5 @@
     shrink: no
     size: "+{{ percent_volume_extend }}%FREE"
 
-
-
+- name: Resize2fs to reflect the space with file system
+  shell: "/usr/bin/resize2fs /dev/mapper/{{ volume_name }}-{{ logical_volume_name }}"
