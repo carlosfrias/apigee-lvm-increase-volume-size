@@ -12,17 +12,18 @@
 - name: Re-read partition table
   shell: /usr/sbin/partprobe
 
-- name: Create physical volume and extend volume group from partition
-  lvg:
-    pvs: "{{ device_path }}{{ partnum }}"
-    vg: "{{ volume_name }}"
+#- name: Create physical volume and extend volume group from partition
+#  lvg:
+#    pvs: "{{ device_path }}{{ partnum }}"
+#    vg: "{{ volume_name }}"
 
 - name: Extend local volume from added physical volume
   lvol:
     vg: "{{ volume_name }}"
-    lv: "{{ logical_volume_name }}"
-    pvs: "{{ device_name }}{{ partnum }}"
+    lv: "/dev/{{ volume_name }}/{{ logical_volume_name }}"
+    pvs: "{{ device_path }}{{ partnum }}"
     shrink: no
+    state: present
     size: "+{{ percent_volume_extend }}%FREE"
 
 - name: Resize2fs to reflect the space with file system
