@@ -13,7 +13,7 @@
   shell: /usr/sbin/partprobe
 
 - name: Create physical volume from partion
-  shell: "/usr/sbin/pvcreate {{ device_path }}"
+  shell: "/usr/sbin/pvcreate {{ device_path }}{{ partnum }}"
 
 #- name: Create physical volume and extend volume group from partition
 #  lvg:
@@ -30,4 +30,4 @@
     size: "+{{ percent_volume_extend }}%FREE"
 
 - name: Resize2fs to reflect the space with file system
-  shell: "/usr/bin/resize2fs /dev/mapper/{{ volume_name }}-{{ logical_volume_name }}"
+  shell: "/usr/sbin/resize2fs /dev/mapper/{{ volume_name }}-{{ logical_volume_name }}"
