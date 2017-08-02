@@ -7,7 +7,7 @@
     state: present
 
 - name: Create partition from available space
-  shell: "/usr/sbin/sgdisk --new {{ partnum }}:$(/usr/sbin/sgdisk -F):$(/usr/sbin/sgdisk -E) --mbrtogpt --typecode {{ partnum }}:{{ typecode }} --print {{ device_name }}"
+  shell: "/usr/sbin/sgdisk --new {{ partnum }}:$(/usr/sbin/sgdisk -F):$(/usr/sbin/sgdisk -E) --mbrtogpt --typecode {{ partnum }}:{{ typecode }} --print {{ device_path }}"
 
 - name: Re-read partition table
   shell: /usr/sbin/partprobe
