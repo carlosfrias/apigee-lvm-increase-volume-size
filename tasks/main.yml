@@ -14,7 +14,7 @@
 
 - name: Create physical volume and extend volume group from partition
   lvg:
-    pvs: "{{ device_path }}"
+    pvs: "{{ device_path }}{{ partnum }}"
     state: present
     vg: "{{ volume_name }}"
 
