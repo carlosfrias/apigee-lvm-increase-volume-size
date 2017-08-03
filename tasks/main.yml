@@ -16,7 +16,7 @@
   shell: "/usr/sbin/vgextend {{ volume_name }} {{ device_path }}{{ partnum }}"
 
 - name: Lvresize local volume from added physical volume
-  shell: "/usr/sbin/lvresize -L+{{ percent_volume_extend }}G /dev/{{ volume_name }}/{{ logical_volume_name }}"
+  shell: "/usr/sbin/lvresize -L+{{ percent_volume_extend }}%FREE /dev/{{ volume_name }}/{{ logical_volume_name }}"
 
 - name: resize2fs volume
   shell: "/usr/sbin/resize2fs /dev/mapper/{{ volume_name }}-{{ logical_volume_name }}"
