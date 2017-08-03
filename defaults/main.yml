@@ -1,9 +1,5 @@
 ---
-# defaults file for apigee-lvm-increase-volume-size
-partnum: 3
-typecode: 8E00
-device_name: xvda
-device_path: "/dev/{{ device_name }}"
+# defaults file for apigee-lvm-increase-volume-sizeß
 volume_name: vgroot
 logical_volume_name: lvvar
 percent_volume_extend: 20
