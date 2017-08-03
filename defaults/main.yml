@@ -1,5 +1,5 @@
 ---
-# defaults file for apigee-lvm-increase-volume-sizeß
+# defaults file for apigee-lvm-increase-volume-size
 volume_name: vgroot
 logical_volume_name: lvvar
 percent_volume_extend: 20
